@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRegionTable extends Migration
+class CreateInviterTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateRegionTable extends Migration
      */
     public function up()
     {
-        Schema::create('region', function (Blueprint $table) {
-            $table->string('REG_CODE', 2)->nullable();
-            $table->string('SEC_CODE', 1)->nullable();
-            $table->string('REG_NOM', 50)->nullable();
+        Schema::create('inviter', function (Blueprint $table) {
+            $table->integer('AC_NUM');
+            $table->smallInteger('PRA_NUM');
+            $table->boolean('SPECIALISTEON')->nullable();
+
+            $table->primary(['AC_NUM', 'PRA_NUM']);
         });
     }
 
@@ -27,6 +29,6 @@ class CreateRegionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('region');
+        Schema::dropIfExists('inviter');
     }
 }

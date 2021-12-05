@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInteragirTable extends Migration
+class CreateConstituerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateInteragirTable extends Migration
      */
     public function up()
     {
-        Schema::create('interagir', function (Blueprint $table) {
-            $table->string('MED_PERTURBATEUR', 10)->nullable();
-            $table->string('MED_MED_PERTURBE', 10)->nullable();
+        Schema::create('constituer', function (Blueprint $table) {
+            $table->string('MED_DEPOTLEGAL', 10);
+            $table->string('CMP_CODE', 4);
+            $table->float('CST_QTE', 10, 0)->nullable();
+
+            $table->primary(['MED_DEPOTLEGAL', 'CMP_CODE']);
         });
     }
 
@@ -26,6 +29,6 @@ class CreateInteragirTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('interagir');
+        Schema::dropIfExists('constituer');
     }
 }

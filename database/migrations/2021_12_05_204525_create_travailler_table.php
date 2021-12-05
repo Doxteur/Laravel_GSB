@@ -14,10 +14,12 @@ class CreateTravaillerTable extends Migration
     public function up()
     {
         Schema::create('travailler', function (Blueprint $table) {
-            $table->string('VIS_MATRICULE', 10)->nullable();
-            $table->dateTime('JJMMAA')->nullable();
-            $table->string('REG_CODE', 2)->nullable();
+            $table->string('VIS_MATRICULE', 10);
+            $table->dateTime('JJMMAA');
+            $table->string('REG_CODE', 2);
             $table->string('TRA_ROLE', 11)->nullable();
+
+            $table->primary(['VIS_MATRICULE', 'JJMMAA', 'REG_CODE']);
         });
     }
 

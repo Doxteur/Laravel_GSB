@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRealiserTable extends Migration
+class CreateDosageTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateRealiserTable extends Migration
      */
     public function up()
     {
-        Schema::create('realiser', function (Blueprint $table) {
-            $table->integer('AC_NUM')->nullable();
-            $table->string('VIS_MATRICULE', 10)->nullable();
-            $table->float('REA_MTTFRAIS')->nullable();
+        Schema::create('dosage', function (Blueprint $table) {
+            $table->string('DOS_CODE', 10)->primary();
+            $table->string('DOS_QUANTITE', 10)->nullable();
+            $table->string('DOS_UNITE', 10)->nullable();
         });
     }
 
@@ -27,6 +27,6 @@ class CreateRealiserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('realiser');
+        Schema::dropIfExists('dosage');
     }
 }

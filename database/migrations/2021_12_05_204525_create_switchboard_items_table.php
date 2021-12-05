@@ -13,12 +13,14 @@ class CreateSwitchboardItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('switchboard items', function (Blueprint $table) {
-            $table->integer('SwitchboardID')->nullable();
-            $table->smallInteger('ItemNumber')->nullable();
+        Schema::create('switchboard_items', function (Blueprint $table) {
+            $table->integer('SwitchboardID');
+            $table->smallInteger('ItemNumber');
             $table->string('ItemText')->nullable();
             $table->smallInteger('Command')->nullable();
             $table->string('Argument')->nullable();
+
+            $table->primary(['SwitchboardID', 'ItemNumber']);
         });
     }
 
@@ -29,6 +31,6 @@ class CreateSwitchboardItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('switchboard items');
+        Schema::dropIfExists('switchboard_items');
     }
 }

@@ -14,10 +14,12 @@ class CreateOffrirTable extends Migration
     public function up()
     {
         Schema::create('offrir', function (Blueprint $table) {
-            $table->string('VIS_MATRICULE', 10)->nullable();
-            $table->integer('RAP_NUM')->nullable();
-            $table->string('MED_DEPOTLEGAL', 10)->nullable();
+            $table->string('VIS_MATRICULE', 10);
+            $table->integer('RAP_NUM')->index('RAP_NUM');
+            $table->string('MED_DEPOTLEGAL', 10)->index('MED_DEPOTLEGAL');
             $table->smallInteger('OFF_QTE')->nullable();
+
+            $table->primary(['VIS_MATRICULE', 'RAP_NUM', 'MED_DEPOTLEGAL']);
         });
     }
 

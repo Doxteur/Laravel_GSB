@@ -14,10 +14,12 @@ class CreatePrescrireTable extends Migration
     public function up()
     {
         Schema::create('prescrire', function (Blueprint $table) {
-            $table->string('MED_DEPOTLEGAL', 10)->nullable();
-            $table->string('TIN_CODE', 5)->nullable();
-            $table->string('DOS_CODE', 10)->nullable();
+            $table->string('MED_DEPOTLEGAL', 10);
+            $table->string('TIN_CODE', 5);
+            $table->string('DOS_CODE', 10);
             $table->string('PRE_POSOLOGIE', 40)->nullable();
+
+            $table->primary(['MED_DEPOTLEGAL', 'TIN_CODE', 'DOS_CODE']);
         });
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFamilleTable extends Migration
+class CreateSecteurTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateFamilleTable extends Migration
      */
     public function up()
     {
-        Schema::create('famille', function (Blueprint $table) {
-            $table->string('FAM_CODE', 3)->nullable();
-            $table->string('FAM_LIBELLE', 80)->nullable();
+        Schema::create('secteur', function (Blueprint $table) {
+            $table->string('SEC_CODE', 1)->primary();
+            $table->string('SEC_LIBELLE', 15)->nullable();
         });
     }
 
@@ -26,6 +26,6 @@ class CreateFamilleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('famille');
+        Schema::dropIfExists('secteur');
     }
 }

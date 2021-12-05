@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypePraticienTable extends Migration
+class CreateSpecialiteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateTypePraticienTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_praticien', function (Blueprint $table) {
-            $table->string('TYP_CODE', 3)->nullable();
-            $table->string('TYP_LIBELLE', 25)->nullable();
-            $table->string('TYP_LIEU', 35)->nullable();
+        Schema::create('specialite', function (Blueprint $table) {
+            $table->string('SPE_CODE', 5)->primary();
+            $table->string('SPE_LIBELLE', 150)->nullable();
         });
     }
 
@@ -27,6 +26,6 @@ class CreateTypePraticienTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_praticien');
+        Schema::dropIfExists('specialite');
     }
 }
