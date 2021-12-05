@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFormulerTable extends Migration
+class CreateComposantTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateFormulerTable extends Migration
      */
     public function up()
     {
-        Schema::create('formuler', function (Blueprint $table) {
-            $table->string('MED_DEPOTLEGAL', 10)->nullable();
-            $table->string('PRE_CODE', 2)->nullable();
+        Schema::create('composant', function (Blueprint $table) {
+            $table->string('CMP_CODE', 4)->primary();
+            $table->string('CMP_LIBELLE', 25)->nullable();
         });
     }
 
@@ -26,6 +26,6 @@ class CreateFormulerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('formuler');
+        Schema::dropIfExists('composant');
     }
 }

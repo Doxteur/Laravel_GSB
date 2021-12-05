@@ -14,7 +14,7 @@ class CreateActiviteComplTable extends Migration
     public function up()
     {
         Schema::create('activite_compl', function (Blueprint $table) {
-            $table->integer('AC_NUM')->nullable();
+            $table->integer('AC_NUM')->primary();
             $table->dateTime('AC_DATE')->nullable();
             $table->string('AC_LIEU', 25)->nullable();
             $table->string('AC_THEME', 10)->nullable();

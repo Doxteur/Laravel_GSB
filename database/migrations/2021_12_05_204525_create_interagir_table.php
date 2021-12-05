@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSecteurTable extends Migration
+class CreateInteragirTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateSecteurTable extends Migration
      */
     public function up()
     {
-        Schema::create('secteur', function (Blueprint $table) {
-            $table->string('SEC_CODE', 1)->nullable();
-            $table->string('SEC_LIBELLE', 15)->nullable();
+        Schema::create('interagir', function (Blueprint $table) {
+            $table->string('MED_PERTURBATEUR', 10);
+            $table->string('MED_MED_PERTURBE', 10);
+
+            $table->primary(['MED_PERTURBATEUR', 'MED_MED_PERTURBE']);
         });
     }
 
@@ -26,6 +28,6 @@ class CreateSecteurTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('secteur');
+        Schema::dropIfExists('interagir');
     }
 }

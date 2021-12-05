@@ -14,12 +14,14 @@ class CreateRapportVisiteTable extends Migration
     public function up()
     {
         Schema::create('rapport_visite', function (Blueprint $table) {
-            $table->string('VIS_MATRICULE', 10)->nullable();
-            $table->integer('RAP_NUM')->nullable();
+            $table->string('VIS_MATRICULE', 10);
+            $table->integer('RAP_NUM');
             $table->smallInteger('PRA_NUM')->nullable()->index('PRA_NUM');
             $table->dateTime('RAP_DATE')->nullable();
             $table->string('RAP_BILAN')->nullable();
             $table->string('RAP_MOTIF')->nullable();
+
+            $table->primary(['VIS_MATRICULE', 'RAP_NUM']);
         });
     }
 

@@ -14,7 +14,7 @@ class CreateVisiteurTable extends Migration
     public function up()
     {
         Schema::create('visiteur', function (Blueprint $table) {
-            $table->string('VIS_MATRICULE', 10)->nullable();
+            $table->string('VIS_MATRICULE', 10)->primary();
             $table->string('VIS_NOM', 25)->nullable();
             $table->string('Vis_PRENOM', 50)->nullable();
             $table->string('VIS_ADRESSE', 50)->nullable();

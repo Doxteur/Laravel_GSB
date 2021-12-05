@@ -14,7 +14,7 @@ class CreateTypeIndividuTable extends Migration
     public function up()
     {
         Schema::create('type_individu', function (Blueprint $table) {
-            $table->string('TIN_CODE', 5)->nullable();
+            $table->string('TIN_CODE', 5)->primary();
             $table->string('TIN_LIBELLE', 50)->nullable();
         });
     }

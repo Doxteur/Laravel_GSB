@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PraticienController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,9 +26,8 @@ Route::get('/login',function(){
     return view('login');
 });
 
-Route::get('/rapport',function(){
-    return view('rapport');
-});
+Route::get('rapport',[PraticienController::class,'liste'])->name('liste');
+
 
 
 

@@ -1,7 +1,6 @@
 @extends('layouts.template')
-@section('title')
-    GSB
-@endsection
+@section('title','GSB')
+
 @section('content')
-<h1>azeaze</h1>
+<h1>Welcome page </h1>
 @endsection

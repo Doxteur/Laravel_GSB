@@ -14,10 +14,12 @@ class CreatePossederTable extends Migration
     public function up()
     {
         Schema::create('posseder', function (Blueprint $table) {
-            $table->smallInteger('PRA_NUM')->nullable();
-            $table->string('SPE_CODE', 5)->nullable();
+            $table->smallInteger('PRA_NUM');
+            $table->string('SPE_CODE', 5);
             $table->string('POS_DIPLOME', 10)->nullable();
-            $table->float('POS_COEFPRESCRIPTION')->nullable();
+            $table->float('POS_COEFPRESCRIPTION', 10, 0)->nullable();
+
+            $table->primary(['PRA_NUM', 'SPE_CODE']);
         });
     }
 

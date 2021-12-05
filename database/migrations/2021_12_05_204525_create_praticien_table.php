@@ -20,8 +20,8 @@ class CreatePraticienTable extends Migration
             $table->string('PRA_ADRESSE', 50)->nullable();
             $table->string('PRA_CP', 5)->nullable();
             $table->string('PRA_VILLE', 25)->nullable();
-            $table->float('PRA_COEFNOTORIETE')->nullable();
-            $table->string('TYP_CODE', 3)->nullable();
+            $table->float('PRA_COEFNOTORIETE', 10, 0)->nullable();
+            $table->string('TYP_CODE', 3)->nullable()->index('TYP_CODE');
         });
     }
 
