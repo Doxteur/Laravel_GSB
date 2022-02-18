@@ -5,14 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Praticien extends Model
+class offrir extends Model
 {
     use HasFactory;
-    public $table = 'praticien';
-    protected $primaryKey = 'PRA_NUM';
-    public $timestamps = false;
-
-  
-
-
+    protected $table = 'offrir';
+    protected $primaryKey = 'RAP_NUM';
+    
 }

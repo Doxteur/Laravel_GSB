@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PraticienController;
+use App\Http\Controllers\RapportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,7 +27,9 @@ Route::get('/login',function(){
     return view('login');
 });
 
-Route::get('rapport',[PraticienController::class,'liste'])->name('liste');
+Route::get('rapports',[RapportController::class,'GetFirst'])->name('GetFirst');
+Route::get('rapport',[RapportController::class,'liste'])->name('liste');
+
 
 
 

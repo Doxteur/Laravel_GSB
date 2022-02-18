@@ -1,16 +1,12 @@
-<?php 
-    session_start();
-    $_SESSION['nom'] = "jimmy";
-    $_SESSION['prenom'] = "jimmy";
-    
-?>
 <div id="header">
     <a href="index.php">
         <img src="resources/Images/logo_2.png" alt="" id="logo">
     </a>
     <div id="compteHeader">
         <img src="resources/Images/Icons/avatar.png" alt="">
-        <h1><?= $_SESSION["nom"] . " " . $_SESSION["prenom"] ?></h1>
+        <!-- <h1>
+            $_SESSION["nom"] . " " . $_SESSION["prenom"] 
+        </h1> -->
     </div>
 </div>
 
@@ -39,7 +35,7 @@
         <ul id="monCompte">
             <div>
                 <img src="resources/Images/Icons/avatar.png" alt="Medicaments">
-                <li><?= $_SESSION["nom"] . " " . $_SESSION["prenom"] ?></li>
+                <!-- <li> $_SESSION["nom"] . " " . $_SESSION["prenom"] </li> -->
             </div>
         </ul>
     </div>
