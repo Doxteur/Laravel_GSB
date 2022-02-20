@@ -1,5 +1,47 @@
 @extends('layouts.design')
 @section('content')
+    <style>
+        input{
+            color: white !important;
+        }
+    </style>
+
+    @php
+
+    $listOfRapportsName = [];
+    // Get list of all rap Num
+    foreach ($rapports as $key) {
+        array_push($listOfRapportsName, $key->RAP_NUM);
+    }
+    $nextRapport;
+    $previousRapport;
+
+    if (count($listOfRapportsName) == 0) {
+        $nextRapport = $rapport->RAP_NUM;
+    } else {
+        // Check if the last rapport is the last one
+        if ($listOfRapportsName[count($listOfRapportsName) - 1] == $rapport->RAP_NUM) {
+            $nextRapport = $listOfRapportsName[0];
+        } elseif ($listOfRapportsName[0] == $rapport->RAP_NUM) {
+            $nextRapport = $listOfRapportsName[count($listOfRapportsName) - 1];
+            $previousRapport = $listOfRapportsName[count($listOfRapportsName) - 1];
+        } else {
+            $nextRapport = $rapport->RAP_NUM;
+            $previousRapport = $rapport->RAP_NUM;
+            for ($i = 0; $i < count($listOfRapportsName); $i++) {
+                if ($listOfRapportsName[$i] == $rapport->RAP_NUM) {
+                    $nextRapport = $listOfRapportsName[$i + 1];
+                }
+            }
+            for ($i = 0; $i < count($listOfRapportsName); $i++) {
+                if ($listOfRapportsName[$i] == $rapport->RAP_NUM) {
+                    $previousRapport = $listOfRapportsName[$i - 1];
+                }
+            }
+        }
+    }
+
+    @endphp
 
     <body>
         <div class="container-scroller">
@@ -20,7 +62,7 @@
                         <ul class="navbar-nav w-100">
                             <li class="nav-item w-100">
                                 <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                                    <input type="text" class="form-control" placeholder="Search products">
+                                    <input type="text" class="form-control" placeholder="Chercher un praticien">
                                 </form>
                             </li>
                         </ul>
@@ -29,7 +71,8 @@
                                 <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                                     <div class="navbar-profile">
                                         <img class="img-xs rounded-circle" src="../assets/images/faces/face15.jpg" alt="">
-                                        <p class="mb-0 d-none d-sm-block navbar-profile-name">{{ session()->get('nom')." ". session()->get('prenom') }}</p>
+                                        <p class="mb-0 d-none d-sm-block navbar-profile-name">
+                                            {{ session()->get('nom') . ' ' . session()->get('prenom') }}</p>
                                         <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                                     </div>
                                 </a>
@@ -37,7 +80,7 @@
                                     aria-labelledby="profileDropdown">
                                     <h6 class="p-3 mb-0">Profile</h6>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item preview-item">
+                                    <a class="dropdown-item preview-item" href="{{ route('infovisiteur') }}">
                                         <div class="preview-thumbnail">
                                             <div class="preview-icon bg-dark rounded-circle">
                                                 <i class="mdi mdi-settings text-success"></i>
@@ -54,11 +97,11 @@
                                                 <i class="mdi mdi-logout text-danger"></i>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="preview-item-content">
-                                           <p class="preview-subject mb-1">Se Deconnecter</p>
+                                            <p class="preview-subject mb-1">Se Deconnecter</p>
                                         </div>
-                                   
+
                                     </a>
                                     <div class="dropdown-divider"></div>
                                 </div>
@@ -123,7 +166,7 @@
                                                             d'échantillions</label>
                                                         <select name="echantillions" id="Selectechantillions "
                                                             class="form-select w-auto bg-dark text-light">
-                                                            @if (count($offrir)!= 0)
+                                                            @if (count($offrir) != 0)
                                                                 @foreach ($offrir as $item)
                                                                     <option class="text-light"
                                                                         value="{{ $item->MED_NOMCOMMERCIAL }}">
@@ -135,6 +178,8 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                
+
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <label for="selectPraticien" class="form-label">Praticien
@@ -155,59 +200,69 @@
                                                             Visite:</label>
                                                         <textarea disabled type="textarea disabled"
                                                             class="form-control bg-dark" id="input disabledAddress2">{{ $rapport->RAP_MOTIF }}</textarea disabled>
-                                                                                        </div>
-                                                                                        <div class="col-md-auto mx-auto">
-                                                                                            <label for="input disabledCity" class="form-label">Bilan : </label>
-                                                                                            <textarea disabled rows="3" cols="40" class=" bg-dark form-control text-justify w-auto" id="input disabledCity">{{ $rapport->RAP_BILAN }}</textarea disabled>
+                                                                                                    </div>
+                                                                                                    <div class="col-md-auto mx-auto">
+                                                                                                        <label for="input disabledCity" class="form-label">Bilan : </label>
+                                                                                                        <textarea disabled rows="3" cols="40" class=" bg-dark form-control text-justify w-auto" id="input disabledCity">{{ $rapport->RAP_BILAN }}</textarea disabled>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="row">
+                                                                                                    <div class="col-12 mt-4">
+                                                                                                        <a href="{{ route('rapportByID', ['id' => $nextRapport]) }}"><button type="button" class="btn btn-secondary" onclick="prevRapport()">Précédent</button></a>
+                                                                                                        <a href="{{ route('rapportByID', ['id' => $nextRapport]) }}"><button type="button" class="btn btn-primary" >Suivant</button></a>
+                                                                                                    </div>
+                                                                                                    @if(session()->get('role') == 'Responsable')
+                                                                                                    <div class="col-12 mt-4">
+                                                                                                        <hr>
+                                                                                                        <h1>Gestion Rapport :</h1>
+                                                                                                        <button type="button" class="btn btn-success" onclick="prevRapport()">Ajouter</button>
+                                                                                                        <button type="button" class="btn btn-warning" onclick="nextRapport()">Modifier</button>
+                                                                                                    </div>
+                                                                                                    @endif
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            
+                                                                                            
                                                                                         </div>
                                                                                     </div>
-                                                                                    <div class="row">
-                                                                                        <div class="col-12 mt-4">
-                                                                                            <button type="button" class="btn btn-secondary" onclick="prevRapport()">Précédent</button>
-                                                                                            <button type="button" class="btn btn-primary" onclick="nextRapport()">Suivant</button>
-                                                                                        </div>
-                                                                                    </div>
+                                                                                    
                                                                                 </div>
                                                                                 
-                                                                                
                                                                             </div>
+                                                                            
                                                                         </div>
-                                                                        
-                                                                    </div>
-                                                                    
+                                                                        <footer class="footer">
+                                                                            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                                                                                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Doussain Jimmy</span>
+                                                                                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Mon <a href="http://www.jimmydoussain.fr" target="_blank"> site web</a></span>
+                                                                            </div>
+                                                                        </footer>
+                                                                    </form>
                                                                 </div>
-                                                                
                                                             </div>
-                                                            <footer class="footer">
-                                                                <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                                                                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Doussain Jimmy</span>
-                                                                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Mon <a href="http://www.jimmydoussain.fr" target="_blank"> site web</a></span>
-                                                                </div>
-                                                            </footer>
-                                                        </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- content-wrapper ends -->
+                                    <!-- partial:../partials/_footer.html -->
+                                    
+                                    <!-- partial -->
                                 </div>
+                                
+                                <!-- main-panel ends -->
                             </div>
+                            <!-- page-body-wrapper ends -->
                         </div>
-                        <!-- content-wrapper ends -->
-                        <!-- partial:../partials/_footer.html -->
-                        
-                        <!-- partial -->
                     </div>
-                    
-                    <!-- main-panel ends -->
                 </div>
-                <!-- page-body-wrapper ends -->
-            </div>
-            
-            <style>
-                input{
-                    margin-bottom: 15px;
-                    
-                }
-            </style>
+        </div>
+                        <style>
+                            input{
+                                margin-bottom: 15px;
+                                
+                            }
+                        </style>
 @endsection

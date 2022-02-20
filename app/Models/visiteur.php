@@ -11,5 +11,7 @@ class visiteur extends Model
     protected $table = 'visiteur';
     protected $primaryKey = 'VIS_MATRICULE';
     public $incrementing = false;
+    public $timestamps = false;
+
 
 }
