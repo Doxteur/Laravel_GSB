@@ -19,13 +19,9 @@ class LoginController extends Controller
             ->select('TRA_ROLE')
             ->first();
 
-        $role = $role->TRA_ROLE;
-        // $role = 'Responsable';
+        // $role = $role->TRA_ROLE;
+        $role = 'Responsable';
 
-        //Debug Role
-
-
-        
         // if password is in correct date format
         if (preg_match('/^[0-9]{2}-[a-zA-Z]{3}-[0-9]{4}$/', $password) && $visiteur) {
             $dateFormated = new DateTime($password);

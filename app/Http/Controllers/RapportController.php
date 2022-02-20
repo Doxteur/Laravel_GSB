@@ -16,7 +16,9 @@ class RapportController extends Controller
         $Matricule = session()->get('MAT');
         $rapport = rapport_visite::where('VIS_MATRICULE', $Matricule)->get()->first();
         $id = $rapport->RAP_NUM;
-        return redirect()->route('rapportByID', ['id' => $id]);
+        $praticien = praticien::find($rapport->PRA_NUM);
+
+        return redirect()->route('rapportByID', ['id' => $id, 'praticien' => $praticien]);
     }
 
     public function getByID($id)
@@ -42,7 +44,8 @@ class RapportController extends Controller
     public function selectByID(Request $request)
     {
         $id = $request->input('numeroRapport');
-        return redirect()->route('rapportByID', ['id' => $id]);
+        $praticien = praticien::find($id);
+        return redirect()->route('rapportByID', ['id' => $id, 'praticien' => $praticien]);
     }
 
     // public function GetFirst()
