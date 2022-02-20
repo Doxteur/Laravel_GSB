@@ -3,6 +3,7 @@
 use App\Http\Controllers\PraticienController;
 use App\Http\Controllers\RapportController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,20 +17,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/home',function(){
-    return view('home');
-});
-
-Route::get('/login',function(){
     return view('login');
-});
+})->name('login');
 
-Route::get('rapports',[RapportController::class,'GetFirst'])->name('GetFirst');
-Route::get('rapport',[RapportController::class,'liste'])->name('liste');
 
+// Route::get('rapports',[RapportController::class,'GetFirst'])->name('GetFirst');
+// Route::get('rapport',[RapportController::class,'liste'])->name('liste');
+
+Route::get('rapport',[RapportController::class,'getFirst'])->name('getFirst')->middleware('checkUserAuth');
+Route::get('rapport/{id}',[RapportController::class,'getByID'])->name('rapportByID')->middleware('checkUserAuth');
+Route::post('changeRapport',[RapportController::class,'selectByID'])->name('changeRap')->middleware('checkUserAuth');
+Route::post('checkLogin',[LoginController::class,'checkLogin'])->name('checkLogin');
+Route::get('logout',[LoginController::class,'logout'])->name('logout');
 
 
 
