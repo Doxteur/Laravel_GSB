@@ -203,44 +203,45 @@
                                                             Visite:</label>
                                                         <textarea disabled type="textarea disabled"
                                                             class="form-control bg-dark" id="input disabledAddress2">{{ $rapport->RAP_MOTIF }}</textarea disabled>
+                                                                                                                                            </div>
+                                                                                                                                            <div class="col-md-auto mx-auto">
+                                                                                                                                                <label for="input disabledCity" class="form-label">Bilan : </label>
+                                                                                                                                                <textarea disabled rows="3" cols="40" class=" bg-dark form-control text-justify w-auto" id="input disabledCity">{{ $rapport->RAP_BILAN }}</textarea disabled>
+                                                                                                                                            </div>
                                                                                                                                         </div>
-                                                                                                                                        <div class="col-md-auto mx-auto">
-                                                                                                                                            <label for="input disabledCity" class="form-label">Bilan : </label>
-                                                                                                                                            <textarea disabled rows="3" cols="40" class=" bg-dark form-control text-justify w-auto" id="input disabledCity">{{ $rapport->RAP_BILAN }}</textarea disabled>
-                                                                                                                                        </div>
-                                                                                                                                    </div>
-                                                                                                                                    <div class="row">
-                                                                                                                                        <div class="col-12 mt-4">
-                                                                                                                                            <a href="{{ route('rapportByID', ['id' => $nextRapport]) }}"><button type="button" class="btn btn-secondary" onclick="prevRapport()">Précédent</button></a>
-                                                                                                                                            <a href="{{ route('rapportByID', ['id' => $nextRapport]) }}"><button type="button" class="btn btn-primary" >Suivant</button></a>
-                                                                                                                                        </div>
-                                                                                                                                        @if (session()->get('role') == 'Responsable')
+                                                                                                                                        <div class="row">
+                                                                                                                                            <div class="col-12 mt-4">
+                                                                                                                                                <a href="{{ route('rapportByID', ['id' => $nextRapport]) }}"><button type="button" class="btn btn-secondary" onclick="prevRapport()">Précédent</button></a>
+                                                                                                                                                <a href="{{ route('rapportByID', ['id' => $nextRapport]) }}"><button type="button" class="btn btn-primary" >Suivant</button></a>
+                                                                                                                                            </div>
+                                                                                                                                            @if (session()->get('role') == 'Responsable')
     <div class="col-12 mt-4">
-                                                                                                                                            <hr>
-                                                                                                                                            <h1>Gestion Rapport :</h1>
-                                                                                                                                            <button type="button" class="btn btn-success" onclick="prevRapport()">Ajouter</button>
-                                                                                                                                            <button type="button" class="btn btn-warning" onclick="nextRapport()">Modifier</button>
-                                                                                                                                        </div>
+                                                                                                                                                <hr>
+                                                                                                                                                <h1>Gestion Rapport :</h1>
+                                                                                                                                                <button type="button" class="btn btn-success" onclick="prevRapport()">Ajouter</button>
+                                                                                                                                                <button type="button" class="btn btn-warning" onclick="nextRapport()">Modifier</button>
+                                                                                                                                            </div>
     @endif
+                                                                                                                                        </div>
                                                                                                                                     </div>
+                                                                                                                                    
+                                                                                                                                    
                                                                                                                                 </div>
-                                                                                                                                
-                                                                                                                                
                                                                                                                             </div>
+                                                                                                                            
                                                                                                                         </div>
                                                                                                                         
                                                                                                                     </div>
                                                                                                                     
                                                                                                                 </div>
-                                                                                                                
-                                                                                                            </div>
-                                                                                                            <footer class="footer">
-                                                                                                                <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                                                                                                                    <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Doussain Jimmy</span>
-                                                                                                                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Mon <a href="http://www.jimmydoussain.fr" target="_blank"> site web</a></span>
-                                                                                                                </div>
-                                                                                                            </footer>
-                                                                                                        </form>
+                                                                                                                <footer class="footer">
+                                                                                                                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                                                                                                                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Doussain Jimmy</span>
+                                                                                                                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Mon <a href="http://www.jimmydoussain.fr" target="_blank"> site web</a></span>
+                                                                                                                    </div>
+                                                                                                                </footer>
+                                                                                                            </form>
+                                                                                                        </div>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
@@ -248,84 +249,83 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+                                                                            <!-- content-wrapper ends -->
+                                                                            <!-- partial:../partials/_footer.html -->
+                                                                            
+                                                                            <!-- partial -->
                                                                         </div>
-                                                                        <!-- content-wrapper ends -->
-                                                                        <!-- partial:../partials/_footer.html -->
                                                                         
-                                                                        <!-- partial -->
+                                                                        <!-- main-panel ends -->
                                                                     </div>
-                                                                    
-                                                                    <!-- main-panel ends -->
+                                                                    <!-- page-body-wrapper ends -->
                                                                 </div>
-                                                                <!-- page-body-wrapper ends -->
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                </div>
+
+
+
+                                                {{-- Modal Praticien --}}
+                                                <!-- Button trigger modal -->
+
+                                  <!-- Modal -->
+
+                                  
+                                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="col-md">
+                                                <label for="">Numero :</label>
+                                                <input type="text" class="bg-dark form-control" value="{{ $praticien->PRA_NUM }}" disabled>
                                             </div>
-
-
-
-                                            {{-- Modal Praticien --}}
-                                            <!-- Button trigger modal -->
-
-                              <!-- Modal -->
-
-                              
-                              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="col-md">
-                                            <label for="">Numero :</label>
-                                            <input type="text" class="bg-dark form-control" value="{{ $praticien->PRA_NUM }}" disabled>
-                                        </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="">Nom :</label>
-                                            <input type="text" class="bg-dark form-control" value="{{ $praticien->PRA_NOM }}" disabled>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="">Prenom :</label>
-                                            <input type="text" class="bg-dark form-control" value="{{ $praticien->PRA_PRENOM }}" disabled>
-                                        </div>
-                                    </div>
                                         <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="">Ville :</label>
-                                            <input type="text" class="bg-dark form-control" value="{{ $praticien->PRA_VILLE }}" disabled>
+                                            <div class="col-md-6">
+                                                <label for="">Nom :</label>
+                                                <input type="text" class="bg-dark form-control" value="{{ $praticien->PRA_NOM }}" disabled>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="">Prenom :</label>
+                                                <input type="text" class="bg-dark form-control" value="{{ $praticien->PRA_PRENOM }}" disabled>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <label for="">CP :</label>
-                                            <input type="text" class="bg-dark form-control" value="{{ $praticien->PRA_CP }}" disabled>
+                                            <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="">Ville :</label>
+                                                <input type="text" class="bg-dark form-control" value="{{ $praticien->PRA_VILLE }}" disabled>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="">CP :</label>
+                                                <input type="text" class="bg-dark form-control" value="{{ $praticien->PRA_CP }}" disabled>
+                                            </div>
+                                         </div>
+                                            <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="">COef :</label>
+                                                <input type="text" class="bg-dark form-control" value="{{ $praticien->PRA_COEFNOTORIETE }}" disabled>
+                                            </div>   
+                                            <div class="col-md-6">
+                                                <label for="">CODE :</label>
+                                                <input type="text" class="bg-dark form-control" value="{{ $praticien->TYP_CODE }}" disabled>
+                                            </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                        <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="">COef :</label>
-                                            <input type="text" class="bg-dark form-control" value="{{ $praticien->PRA_COEFNOTORIETE }}" disabled>
-                                        </div>   
-                                        <div class="col-md-6">
-                                            <label for="">CODE :</label>
-                                            <input type="text" class="bg-dark form-control" value="{{ $praticien->TYP_CODE }}" disabled>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                         </div>
-                                    </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              </div>
-                                            
-                                                            <style>
-                                                                input{
-                                                                    margin-bottom: 15px;
-                                                                    
-                                                                }
-                                                            </style>
-                                                           
+                                                
+                                                                <style>
+                                                                    input{
+                                                                        margin-bottom: 15px;
+                                                                        
+                                                                    }
+                                                                </style>
+                                                               
 @endsection
