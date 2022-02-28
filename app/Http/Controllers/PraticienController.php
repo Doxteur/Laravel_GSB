@@ -8,8 +8,10 @@ use App\Models\Praticien;
 class PraticienController extends Controller
 {
     //Liste
-    public function liste()
+   
+    public function index()
     {
-        return view("test", ["todos" => Praticien::all()]);
+        return response()->json(Praticien::all());
     }
+
 }

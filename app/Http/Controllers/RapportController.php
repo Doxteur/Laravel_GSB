@@ -22,7 +22,6 @@ class RapportController extends Controller
     public function getByID($id)
     {
         $Matricule = session()->get('MAT');
-
         $rapport = rapport_visite::where([
             ['VIS_MATRICULE', $Matricule],
             ['RAP_NUM', $id]
@@ -32,11 +31,14 @@ class RapportController extends Controller
         }
         $rapports = rapport_visite::where('VIS_MATRICULE', $Matricule)->get();
         $praticien = praticien::find($rapport->PRA_NUM);
-
         $offrir = offrir::join('medicament', 'offrir.MED_DEPOTLEGAL', '=', 'medicament.MED_DEPOTLEGAL')
             ->where('RAP_NUM', $id)
             ->get();
-        return view('table', ['rapport' => $rapport, 'rapports' => $rapports, 'praticien' => $praticien, 'offrir' => $offrir]);
+        $PraType = praticien::join('type_praticien','praticien.TYP_CODE','=','type_praticien.TYP_CODE')
+            ->where('PRA_NUM',$rapport->PRA_NUM)
+            ->get();
+        $PraType = $PraType->first();
+        return view('table', ['rapport' => $rapport, 'rapports' => $rapports, 'praticien' => $praticien, 'offrir' => $offrir, 'PraType' => $PraType]);
     }
 
     public function selectByID(Request $request)
@@ -45,26 +47,12 @@ class RapportController extends Controller
         return redirect()->route('rapportByID', ['id' => $id]);
     }
 
-    // public function GetFirst()
-    // {
-    //     $rapport = rapport_visite::first();
-    //     return view("rapport", ["rapport" => $rapport], ["rapports" => rapport_visite::all()]);
-    // }
-
-    // public function getData(Request $request)
-    // {
-    //     // Pass request to where clause
-
-    //     $rapport = rapport_visite::join('praticien', function ($join) use($request) {
-    //         $join->on('praticien.PRA_NUM', '=', 'rapport_visite.PRA_NUM')
-    //         ->where('rapport_visite.RAP_NUM', '=', $request->numeroRapport);
-    //     })
-    //     ->leftjoin('offrir', 'offrir.RAP_NUM', '=', 'rapport_visite.RAP_NUM')
-    //     ->leftjoin('medicament', 'medicament.MED_DEPOTLEGAL', '=', 'offrir.MED_DEPOTLEGAL')
-    //     ->get();
-    //     return view("rapport", [["echantillions" => "aze"],["rapport" => $rapport[0]], ["rapports" => rapport_visite::all()]]);
-    // }
-
-
+    // Web Services 
+    public function index()
+    {
+        $rapport = rapport_visite::all();
+        return response()->json($rapport);
+    }
+   
 
 }

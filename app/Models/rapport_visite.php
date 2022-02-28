@@ -12,4 +12,5 @@ class rapport_visite extends Model
     // Two Primary key
     protected $primaryKey = 'RAP_NUM';
     
+    
 }

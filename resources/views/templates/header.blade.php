@@ -36,6 +36,14 @@
                 <span class="menu-title">Mes Informations</span>
             </a>
         </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ route('medicaments') }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-pill"></i>
+                </span>
+                <span class="menu-title">Medicaments</span>
+            </a>
+        </li>
             
    
     </ul>
