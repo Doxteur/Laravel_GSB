@@ -10,5 +10,7 @@ class offrir extends Model
     use HasFactory;
     protected $table = 'offrir';
     protected $primaryKey = 'RAP_NUM';
+    //No time stamp
+    public $timestamps = false;
     
 }

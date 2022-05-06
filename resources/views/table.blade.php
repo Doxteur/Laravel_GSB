@@ -171,7 +171,7 @@
                                                                 @foreach ($offrir as $item)
                                                                     <option class="text-light"
                                                                         value="{{ $item->MED_NOMCOMMERCIAL }}">
-                                                                        {{ $item->MED_NOMCOMMERCIAL }}</option>
+                                                                        {{ $item->MED_NOMCOMMERCIAL." en ". $item->OFF_QTE }} </option>
                                                                 @endforeach
                                                             @else
                                                                 <option value="">Vide</option>
@@ -315,11 +315,12 @@
                     </div>
                     <div class="modal-body">
                         <form action="{{ route('addRap') }}" method="POST">
+                            @csrf
                             {{-- Input date --}}
                             <div class="row">
                                 <div class="form-group col-6">
                                     <label for="">Date :</label>
-                                    <input type="date" class="form-control bg-dark" id="date" name="dateInput">
+                                    <input type="date" class="form-control bg-dark" id="date" name="dateInput" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -337,7 +338,7 @@
                             <div class="row">
                                 <div class="form-group col-6">
                                     <label for="motifInput">Motif Visite</label>
-                                    <input type="text" name="motifInput" class="form-control">
+                                    <input type="text" name="motifInput" class="form-control" required>
                                 </div>
                             </div>
                             <div class="row">
@@ -366,17 +367,20 @@
                             <div class="row mt-0" id="parentPlus">
                                 <div class="form-group col-2">
                                     <div class="d-flex ">
-                                    <label class="btn btn-success mr-2" id="plus" onclick="addInput()">+</label>
-                                    <label class="btn btn-danger mx-2" id="plus" onclick="removeInput()">-</label>
+                                        <label class="btn btn-success mr-2" id="plus" onclick="addInput()">+</label>
+                                        <label class="btn btn-danger mx-2" id="plus" onclick="removeInput()">-</label>
+                                    </div>
                                 </div>
-                                    
-                                </div>
-                                
                             </div>
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label for="bilanInput">Bilan :</label>
+                                    <textarea name="bilanInput" id="" cols="30" rows="10" class="form-control" style="color: white" required></textarea>
+                                </div>
+                            </div>
+                            <button class="btn btn-success">Valider</button>
+                        </form>
                     </div>
-                    </form>
-                </div>
-
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                 </div>

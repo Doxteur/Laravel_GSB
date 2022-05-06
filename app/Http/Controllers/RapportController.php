@@ -60,7 +60,29 @@ class RapportController extends Controller
     // Add Rap
     public function addRap(Request $request)
     {
-
+       
+        // add rapport to rapport_visite and for each medocInput add to offrir
+        $rapport = new rapport_visite();
+        $rapport->VIS_MATRICULE = session()->get('MAT');
+        $rapport->PRA_NUM = $request->input('praInput');
+        $rapport->RAP_DATE = $request->input('dateInput');
+        $rapport->RAP_BILAN = $request->input('bilanInput');
+        $rapport->RAP_MOTIF = $request->input('motifInput');
+        $rapport->save();
+        $id = $rapport->RAP_NUM;
+        // if there is a medocInput
+        if ($request->input('medocInput') != null) {
+            for ($i = 0; $i < count($request->input('medocInput')); $i++) {
+                $offrir = new offrir();
+                $offrir->RAP_NUM = $id;
+                $offrir->MED_DEPOTLEGAL = $request->input('medocInput')[$i];
+                $offrir->OFF_QTE = $request->input('medocNumberInput')[$i];
+                $offrir->VIS_MATRICULE = session()->get('MAT');
+    
+                $offrir->save();
+            }
+        }
+        return redirect()->route('getFirst');
     }
 
 

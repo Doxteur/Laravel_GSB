@@ -11,6 +11,8 @@ class rapport_visite extends Model
     protected $table = 'rapport_visite';
     // Two Primary key
     protected $primaryKey = 'RAP_NUM';
+    // No timestamps
+    public $timestamps = false;
     
     
 }
