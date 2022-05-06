@@ -199,115 +199,200 @@
                                                     <div class="col-auto">
                                                         <label for="input disabledAddress2" class="form-label">Motif
                                                             Visite:</label>
-                                                        <textarea disabled type="textarea disabled"
-                                                            class="form-control bg-dark" id="input disabledAddress2">{{ $rapport->RAP_MOTIF }}</textarea disabled>
-                                                                                                                                    </div>
-                                                                                                                                    <div class="col-md-auto mx-auto">
-                                                                                                                                        <label for="input disabledCity" class="form-label">Bilan : </label>
-                                                                                                                                        <textarea disabled rows="3" cols="40" class=" bg-dark form-control text-justify w-auto" id="input disabledCity">{{ $rapport->RAP_BILAN }}</textarea disabled>
-                                                                                                                                    </div>
-                                                                                                                                </div>
-                                                                                                                                <div class="row">
-                                                                                                                                    <div class="col-12 mt-4">
-                                                                                                                                        <a href="{{ route('rapportByID', ['id' => $nextRapport]) }}"><button type="button" class="btn btn-secondary" onclick="prevRapport()">Précédent</button></a>
-                                                                                                                                        <a href="{{ route('rapportByID', ['id' => $nextRapport]) }}"><button type="button" class="btn btn-primary" >Suivant</button></a>
-                                                                                                                                    </div>
-                                                                                                                                    @if (session()->get('role') == 'Responsable')
-    <div class="col-12 mt-4">
-                                                                                                                                        <hr>
-                                                                                                                                        <h1>Gestion Rapport :</h1>
-                                                                                                                                        <button type="button" class="btn btn-success" onclick="prevRapport()">Ajouter</button>
-                                                                                                                                        <button type="button" class="btn btn-warning" onclick="nextRapport()">Modifier</button>
-                                                                                                                                    </div>
-    @endif
-                                                                                                                                </div>
-                                                                                                                            </div>
-                                                                                                                            
-                                                                                                                            
-                                                                                                                        </div>
-                                                                                                                    </div>
-                                                                                                                    
-                                                                                                                </div>
-                                                                                                                
-                                                                                                            </div>
-                                                                                                        </div>
-                                                                                                        <footer class="footer">
-                                                                                                            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                                                                                                                <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Doussain Jimmy</span>
-                                                                                                                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Mon <a href="http://www.jimmydoussain.fr" target="_blank"> site web</a></span>
-                                                                                                            </div>
-                                                                                                        </footer>
-                                                                                                    </form>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- content-wrapper ends -->
-                                                                    <!-- partial:../partials/_footer.html -->
-                                                                    
-                                                                    <!-- partial -->
-                                                                </div>
-                                                                
-                                                                <!-- main-panel ends -->
-                                                            </div>
-                                                            <!-- page-body-wrapper ends -->
+                                                        <textarea disabled type="textarea disabled" class="form-control bg-dark"
+                                                            id="input disabledAddress2">{{ $rapport->RAP_MOTIF }}</textarea>
+
+                                                    </div>
+                                                    <div class="col-md-auto mx-auto">
+                                                        <label for="input disabledCity" class="form-label">Bilan :
+                                                        </label>
+                                                        <textarea disabled rows="3" cols="40" class=" bg-dark form-control text-justify w-auto"
+                                                            id="input disabledCity">{{ $rapport->RAP_BILAN }}</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12 mt-4">
+                                                        <a href="{{ route('rapportByID', ['id' => $nextRapport]) }}"><button
+                                                                type="button" class="btn btn-secondary"
+                                                                onclick="prevRapport()">Précédent</button></a>
+                                                        <a href="{{ route('rapportByID', ['id' => $nextRapport]) }}"><button
+                                                                type="button" class="btn btn-primary">Suivant</button></a>
+                                                    </div>
+                                                    @if (session()->get('role') == 'Responsable')
+                                                        <div class="col-12 mt-4">
+                                                            <hr>
+                                                            <h1>Gestion Rapport :</h1>
+                                                            <button type="button" class="btn btn-success"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#ajouterModal">Ajouter</button>
+                                                            <button type="button" class="btn btn-warning"
+                                                                onclick="changeRapport()">Modifier</button>
                                                         </div>
+                                                    @endif
                                                 </div>
                                         </div>
-                                       
-                                                        <style>
-                                                            input{
-                                                                margin-bottom: 15px;
-                                                                
-                                                            }
-                                                        </style>
-                              <!-- Modal -->
-                              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <div class="modal-body">
-                                    <div class="row">
-                                        <h1>Praticien</h1>
-
-                                        <div class="form-group ">
-                                            <label for="">Nom Praticien:</label>
-                                            <input type="text" class="form-control bg-dark" disabled value="{{ $praticien->PRA_NOM . ' ' . $praticien->PRA_PRENOM }}">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-6">
-                                            <label for="">Adresse :</label>
-                                            <input type="text" class="form-control bg-dark" disabled value="{{ $praticien->PRA_ADRESSE }}">
-                                        </div>
-                                    
-                                        <div class="form-group col-6">
-                                            <label for="">Ville:</label>
-                                            <input type="text" class="form-control bg-dark" disabled value="{{ $praticien->PRA_VILLE . ' ' . $praticien->PRA_CP }}">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col-6">
-                                        <label for="">Specialite</label>
-                                        <input type="text" class="form-control bg-dark" disabled value="{{ $PraType->TYP_LIBELLE }}">
-                                        </div>
-                                        <div class="form-group col-6">
-                                            <label for="">Lieux</label>
-                                            <input type="text" class="form-control bg-dark" disabled value="{{ $PraType->TYP_LIEU }}">
-                                            </div>
-                                    </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                                    </div>
-                                  </div>
                                 </div>
-                              </div>
-@endsection
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="footer">
+                        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © Doussain
+                                Jimmy</span>
+                            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Mon <a
+                                    href="http://www.jimmydoussain.fr" target="_blank"> site web</a></span>
+                        </div>
+                    </footer>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <style>
+            input {
+                margin-bottom: 15px;
+
+            }
+
+        </style>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <h1>Praticien</h1>
+
+                            <div class="form-group ">
+                                <label for="">Nom Praticien:</label>
+                                <input type="text" class="form-control bg-dark" disabled
+                                    value="{{ $praticien->PRA_NOM . ' ' . $praticien->PRA_PRENOM }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="">Adresse :</label>
+                                <input type="text" class="form-control bg-dark" disabled
+                                    value="{{ $praticien->PRA_ADRESSE }}">
+                            </div>
+
+                            <div class="form-group col-6">
+                                <label for="">Ville:</label>
+                                <input type="text" class="form-control bg-dark" disabled
+                                    value="{{ $praticien->PRA_VILLE . ' ' . $praticien->PRA_CP }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="">Specialite</label>
+                                <input type="text" class="form-control bg-dark" disabled
+                                    value="{{ $PraType->TYP_LIBELLE }}">
+                            </div>
+                            <div class="form-group col-6">
+                                <label for="">Lieux</label>
+                                <input type="text" class="form-control bg-dark" disabled
+                                    value="{{ $PraType->TYP_LIEU }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Modal Ajouter Rapport --}}
+        <div class="modal fade" id="ajouterModal" tabindex="-1" aria-labelledby="ajouterModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ajouter un rapport</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('addRap') }}" method="POST">
+                            {{-- Input date --}}
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label for="">Date :</label>
+                                    <input type="date" class="form-control bg-dark" id="date" name="dateInput">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label for="praInput">Praticien :</label>
+                                    <select class="form-control bg-dark" id="praInput" name="praInput"
+                                        style="color:white;">
+                                        @foreach ($praticiens as $item)
+                                            <option value="{{ $item->PRA_NUM }}">
+                                                {{ $item->PRA_NOM . ' ' . $item->PRA_PRENOM }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label for="motifInput">Motif Visite</label>
+                                    <input type="text" name="motifInput" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-6 mb-0">
+                                    <label for="medocInput[]">Echantillon</label>
+                                    <select id="" name="medocInput[]" class="form-control" style="color:white;">
+                                        @foreach ($medicaments as $item)
+                                            <option value="{{ $item->MED_DEPOTLEGAL }}">{{ $item->MED_NOMCOMMERCIAL }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    {{-- Make a plus icon --}}
+                                </div>
+                                <div class="form-group col-2 mb-0">
+                                    <label for="medocNumberInput[]">Quantity</label>
+                                    <select id="" name="medocNumberInput[]" class="form-control" style="color:white;">
+                                        {{-- Loop for 5 times and create option --}}
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            <option value="{{ $i }}">{{ $i }}</option>
+                                        @endfor
+                                    </select>
+                                    {{-- Make a plus icon --}}
+                                </div>
+                               
+                            </div>
+                            <div class="row mt-0" id="parentPlus">
+                                <div class="form-group col-2">
+                                    <div class="d-flex ">
+                                    <label class="btn btn-success mr-2" id="plus" onclick="addInput()">+</label>
+                                    <label class="btn btn-danger mx-2" id="plus" onclick="removeInput()">-</label>
+                                </div>
+                                    
+                                </div>
+                                
+                            </div>
+                    </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+        <script>
+            function addInput() {
+                $('#parentPlus').before(
+                    '<div class="row"><div class="form-group mb-0 col-6"><select id="" name="medocInput[]" class="form-control" style="color:white;"> @foreach ($medicaments as $item)<option value="{{ $item->MED_DEPOTLEGAL }}">{{ $item->MED_NOMCOMMERCIAL }}</option>@endforeach </select> </div><div class="form-group mb-0 col-2"><select id="" name="medocNumberInput[]" class="form-control" style="color:white;">@for ($i = 1; $i <= 5; $i++)<option value="{{ $i }}">{{ $i }}</option>@endfor </select></div></div>');
+
+                }
+                function removeInput() {
+                    $('#parentPlus').prev().remove();
+                }
+        </script>
+    @endsection
