@@ -29,6 +29,8 @@ Route::get('rapport', [RapportController::class, 'getFirst'])->name('getFirst')-
 Route::get('rapport/{id}', [RapportController::class, 'getByID'])->name('rapportByID')->middleware('checkUserAuth');
 Route::post('changeRapport', [RapportController::class, 'selectByID'])->name('changeRap')->middleware('checkUserAuth');
 Route::post('addRap', [RapportController::class, 'addRap'])->name('addRap')->middleware('checkUserAuth');
+Route::post('deleteRap', [RapportController::class, 'deleteRap'])->name('deleteRap')->middleware('checkUserAuth');
+Route::post('modifRap', [RapportController::class, 'modifRap'])->name('modifRap')->middleware('checkUserAuth');
 
 // Medoc Route
 Route::get('medicaments',[medicamentController::class,'getAll'])->name('medicaments')->middleware('checkUserAuth');

@@ -225,8 +225,14 @@
                                                             <button type="button" class="btn btn-success"
                                                                 data-bs-toggle="modal"
                                                                 data-bs-target="#ajouterModal">Ajouter</button>
-                                                            <button type="button" class="btn btn-warning"
-                                                                onclick="changeRapport()">Modifier</button>
+                                                                <button type="button" class="btn btn-warning"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#modifModal">Modifier</button>
+                                                                <button type="button" class="btn btn-danger"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#deleteModal">Supprimer</button>
+                                                                
+                                                                
                                                         </div>
                                                     @endif
                                                 </div>
@@ -386,9 +392,74 @@
                 </div>
             </div>
         </div>
+       
         </div>
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Supprimer un rapport</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('deleteRap') }}" method="POST">  
+                            @csrf
+                            <label for="">Numero du Rapport :</label>
+                            <select name="deleteInputRap" id="" class="form-control" style="color: white;">
+                                    @foreach ($rapports as $item)
+                                        <option value="{{ $item->RAP_NUM }}">{{ $item->RAP_NUM }}</option>
+                                        @endforeach
+                            </select>
+                            <button class="btn btn-success">Valider</button>
+                        </form>
 
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+        </div>
+        {{-- Modif Modal --}}
+        <div class="modal fade" id="modifModal" tabindex="-1" aria-labelledby="modifModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Supprimer un rapport</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('modifRap') }}" method="POST">  
+                            @csrf
+                            <label for="">Numero du Rapport :</label>
+                            <input type="text" class="form-control bg-dark w-25" value="{{ $rapport->RAP_NUM }}" name="numInput" readonly >
+                            <label for="">Date :</label>
+                            @php
+                                 $time = date("Y-m-d",strtotime($rapport->RAP_DATE));
+                            @endphp
+                            {{-- Input date format day month year --}}
+                            <input type="date" class="form-control bg-dark" id="date" name="dateInput" value="{{ $time }}" required>
+                            <label for="">Praticien :</label>
+                            <select class="form-control bg-dark" id="praInput" name="praInput"
+                                style="color:white;">
+                                @foreach ($praticiens as $item)
+                                    <option value="{{ $item->PRA_NUM }}">
+                                        {{ $item->PRA_NOM . ' ' . $item->PRA_PRENOM }}</option>
+                                @endforeach
+                            </select>
+                            <label for="">Motif Visite :</label>
+                            <input type="text" class="form-control bg-dark" id="motifInput" name="motifInput" value="{{ $rapport->RAP_MOTIF }}" required>
+                            <label for="">Bilan :</label>
+                            <textarea name="bilanInput" id="" cols="30" rows="10" class="form-control" style="color: white" required></textarea>
+                            <button class="btn btn-success mt-2">Valider</button>
 
+                        </form>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
         <script>
             function addInput() {
                 $('#parentPlus').before(
@@ -398,5 +469,6 @@
                 function removeInput() {
                     $('#parentPlus').prev().remove();
                 }
+
         </script>
     @endsection

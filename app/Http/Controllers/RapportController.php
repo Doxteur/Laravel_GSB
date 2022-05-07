@@ -86,7 +86,34 @@ class RapportController extends Controller
     }
 
 
+    public function deleteRap(Request $request){
+        $id = $request->input('deleteInputRap');
+        $rapport = rapport_visite::where('RAP_NUM', $id)->get()->first();
+        $rapport->delete();
+        $offrir = offrir::where('RAP_NUM', $id)->get();
+        // if offrir is not empty
+        if ($offrir != null) {
+            foreach ($offrir as $o) {
+                $o->delete();
+            }
+        }
+       
+        return redirect()->route('getFirst');
+        
+    }
 
+    public function modifRap(Request $request){
+        $id = $request->input('numInput');
+        $rapport = rapport_visite::where('RAP_NUM', $id)->get()->first();
+        $rapport->RAP_DATE = $request->input('dateInput');
+        $rapport->PRA_NUM = $request->input('praInput');
+        $rapport->RAP_BILAN = $request->input('bilanInput');
+        $rapport->RAP_MOTIF = $request->input('motifInput');
+        $rapport->save();
+        // Redirect
+        return redirect()->route('rapportByID', ['id' => $id]);
+    }
+        
     // Web Services 
     public function index()
     {
