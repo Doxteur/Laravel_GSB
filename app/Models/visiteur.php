@@ -13,5 +13,9 @@ class visiteur extends Model
     public $incrementing = false;
     public $timestamps = false;
 
+    public function logs()
+    {
+        return $this->hasMany(logs::class);
+    }
 
 }

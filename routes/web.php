@@ -4,6 +4,7 @@ use App\Http\Controllers\PraticienController;
 use App\Http\Controllers\RapportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\logsController;
 use App\Http\Controllers\medicamentController;
 use App\Http\Controllers\VisiteurController;
 
@@ -44,6 +45,16 @@ Route::post('updateinfoVisiteur', [VisiteurController::class, 'updateInfoVisiteu
 // Loging Logout
 Route::post('checkLogin', [LoginController::class, 'checkLogin'])->name('checkLogin');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+
+// Partie logs
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('logs',[logsController::class, 'getlogs'])->name('logs')->middleware('checkUserAuth');
+Route::post('logs',[logsController::class, 'getlogsbymonth'])->name('getlogsbymonth')->middleware('checkUserAuth');
+Route::get('allLogs',[logsController::class, 'allLogs'])->name('allLogs')->middleware('checkUserAuth');
+
+// Route::get('testlogs',[logsController::class, 'testLogs'])->name('testlogs')->middleware('checkUserAuth');
 
 // Web Services
 // Call medicament getAllWS

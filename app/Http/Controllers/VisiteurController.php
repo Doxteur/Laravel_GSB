@@ -25,4 +25,5 @@ class VisiteurController extends Controller
         Session::flash('alert-class', 'alert-success');         
         return redirect()->route('infovisiteur');
     }
+    
 }

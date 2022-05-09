@@ -77,7 +77,7 @@
             <div class="content-wrapper">
                 <div class="page-header">
                     <nav aria-label="breadcrumb">
-                        <H1>Medicaments</H1>
+                        <H1>Mes Connexions</H1>
                     </nav>
                 </div>
 
@@ -86,22 +86,45 @@
                     <div class="col-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{ route('medicamentByID') }}" method="GET">
+                                <form action="{{ route('getlogsbymonth') }}" method="POST">
                                     @csrf
-                                    <div class="form-group w-50">
-                                        <label for="selectMedId">Choisir Medicament :</label>
-                                        <select name="selectMedId" id=""
-                                            class="form-control bg-dark text-light mb-2 mt-2 w-25">
-                                            
-                                        </select>
-                                        <button class="btn btn-success">Chercher</button>
-                                        <a class="btn btn-warning" href="{{ route('medicaments') }}">Afficher tout</a>
-
-                                    </div>
+                                    <select name="month" id="">
+                                        <option value="1">Janvier</option>
+                                        <option value="2">Février</option>
+                                        <option value="3">Mars</option>
+                                        <option value="4">Avril</option>
+                                        <option value="5">Mai</option>
+                                        <option value="6">Juin</option>
+                                        <option value="7">Juillet</option>
+                                        <option value="8">Aout</option>
+                                        <option value="9">Septembre</option>
+                                        <option value="10">Octobre</option>
+                                        <option value="11">Novembre</option>
+                                        <option value="12">Décembre</option>
+                                    </select>
+                                    <button class="btn btn-success">Chercher</button>
                                 </form>
+                                <a href="{{ route('allLogs') }}">
+                                    <button class="btn btn-warning mt-2 mb-4">Tous mes logs</button>
+                                </a>
                                 <div class="table-responsive">
+                                    {{-- <h2>Date de <span style="text-decoration: underline;">{{$month_name = date('F', mktime(0, 0, 0, $month, 10))??'Mai'}}</span>.</h2> --}}
                                     <table class="table table-bordered text-light ">
-                                       
+                                        <thead>
+                                            <tr>
+                                                <th>VIS_MATRICULE</th>
+                                                <th>Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($logs as $log)
+                                                <tr>
+                                                    <td>{{ $log->VIS_MATRICULE }}</td>
+                                                    <td>{{ $log->date }}</td>
+                                                    <td style="color:green;">{{ $log->action }}</td>
+                                                </tr>
+                                            @endforeach
                                     </table>
                                 </div>
                             </div>
