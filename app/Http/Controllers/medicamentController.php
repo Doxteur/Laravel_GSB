@@ -30,4 +30,8 @@ class medicamentController extends Controller
         return response()->json($medicaments);
     }
   
+    public function medicamentsWS(){
+        $medicaments = medicament::all();
+        return response()->json($medicaments);
+    }
 }

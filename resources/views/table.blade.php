@@ -450,7 +450,7 @@
                             <label for="">Motif Visite :</label>
                             <input type="text" class="form-control bg-dark" id="motifInput" name="motifInput" value="{{ $rapport->RAP_MOTIF }}" required>
                             <label for="">Bilan :</label>
-                            <textarea name="bilanInput" id="" cols="30" rows="10" class="form-control" style="color: white" required></textarea>
+                            <textarea name="bilanInput" id="" cols="30" rows="10" class="form-control" style="color: white"  required>{{ $rapport->RAP_BILAN }} </textarea>
                             <button class="btn btn-success mt-2">Valider</button>
 
                         </form>

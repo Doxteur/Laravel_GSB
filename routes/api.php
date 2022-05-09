@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('medicamentsWS', medicamentController::class);
-Route::apiResource('praticiensWS', PraticienController::class);
-Route::apiResource('rapportsWS', RapportController::class);
+Route::apiResource('medicamentsWS', medicamentController::class)->middleware('auth:api');
+
+Route::apiResource('praticiensWS', PraticienController::class)->middleware('auth:api');
+Route::apiResource('rapportsWS', RapportController::class)->middleware('auth:api');

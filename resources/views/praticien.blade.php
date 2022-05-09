@@ -1,10 +1,11 @@
 @extends('layouts.design')
 @section('content')
-<style>
-    input{
-        color: white !important;
-    }
-</style>
+    <style>
+        input {
+            color: white !important;
+        }
+
+    </style>
     <div class="container-scroller">
         <!-- partial:../partials/_sidebar.html -->
         @include('templates.header')
@@ -87,41 +88,29 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="container-fluid">
-                                    <form action="{{ route('updateinfoVisiteur') }}" method="POST">
-                                        @csrf
-                                        <div class="form-group">
-                                            <label for="">Nom</label>
-                                            <input name="VIS_NOM" type="text" class="form-control bg-grey" value="{{ $visiteur->VIS_NOM }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Prenom</label>
-                                            <input name="Vis_PRENOM" type="text" class="form-control bg-grey" value="{{ $visiteur->Vis_PRENOM }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Adresse</label>
-                                            <input name="VIS_ADRESSE" type="text" class="form-control bg-grey" value="{{ $visiteur->VIS_ADRESSE }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Ville</label>
-                                            <input name="VIS_VILLE" type="text" class="form-control bg-grey" value="{{ $visiteur->VIS_VILLE }}">
-                                        </div>
-                                        <p>
-                                            <div class="collapse bg-secondary p-2 rounded m-2" id="collapseExample">
-                                                {{ $visiteur->api_token}}
-                                          </div>
-                                            <a class="btn btn-danger" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                              Voir son token
-                                            </a>
-                                        </p>
-                                        
-                                        
-                                        <button class="btn btn-success">Mettre à jour</button>
-                                    </form>
-                                    @if (Session::has('message'))
-                                        <div class="alert alert-success mt-4">{{ Session::get('message') }}</div>
-                                    @endif
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nom</th>
+                                                    <th>Ville</th>
+                                                    <th>Spécialité</th>
+                                                </tr>
+
+                                                <tbody>
+                                                    @foreach ($praticiens as $praticien)
+                                                        <tr>
+                                                            <td>{{$praticien->PRA_NOM . " " . $praticien->PRA_PRENOM}}</td>
+                                                            <td>{{$praticien->PRA_VILLE}}</td>
+                                                            <td>{{$praticien->TYP_CODE}}</td>
+                                                            
+                                                        </tr>
+                                                        
+                                                    @endforeach
+                                                </tbody>
+                                            </thead>
+                                        </table>
+                                    </div>
                                 </div>
-                            </div>
                                 <!-- content-wrapper ends -->
                                 <!-- partial:../partials/_footer.html -->
 
@@ -135,4 +124,4 @@
                 </div>
             </div>
         </div>
-    @endsection
+    </div>

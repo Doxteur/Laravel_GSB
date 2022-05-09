@@ -121,6 +121,12 @@ class RapportController extends Controller
         return response()->json($rapport);
     }
 
+    public function rapportsWS(){
+        $rapport = rapport_visite::all();
+        return response()->json($rapport);
+
+    }
+
    
 
 }
