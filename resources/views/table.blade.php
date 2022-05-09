@@ -8,7 +8,7 @@
     </style>
 
     @php
-
+    
     $listOfRapportsName = [];
     // Get list of all rap Num
     foreach ($rapports as $key) {
@@ -44,7 +44,10 @@
 
     @endphp
 
+
     <body>
+     
+
         <div class="container-scroller">
             <!-- partial:../partials/_sidebar.html -->
             @include('templates.header')

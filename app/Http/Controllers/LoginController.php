@@ -43,7 +43,6 @@ class LoginController extends Controller
                 $log->date = date('Y-m-d H:i:s');
                 $log->VIS_MATRICULE = $visiteur->VIS_MATRICULE;
                 $log->action = 'Login';
-                
                 $log->save();
                 return redirect('/rapport');
             } else {
