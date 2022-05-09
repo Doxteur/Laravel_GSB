@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\visiteur;
 use DateTime;
+use App\Models\logs;
 
 class LoginController extends Controller
 {
@@ -18,27 +19,30 @@ class LoginController extends Controller
         $role = visiteur::join('travailler', 'visiteur.VIS_MATRICULE', '=', 'travailler.VIS_MATRICULE')
             ->select('TRA_ROLE')
             ->first();
-
         // $role = $role->TRA_ROLE;
         $role = 'Responsable';
-
         // if password is in correct date format
         if (preg_match('/^[0-9]{2}-[a-zA-Z]{3}-[0-9]{4}$/', $password) && $visiteur) {
             $dateFormated = new DateTime($password);
             $dateEmbauche = date_format($dateFormated, 'Y-m-d');
-
             $dateOfVisiteur = $visiteur->VIS_DATEEMBAUCHE;
             // Format dateOfVisiteur
             $dateOfVisiteurFormated = new DateTime($dateOfVisiteur);
             $dateOfVisiteurFormated = date_format($dateOfVisiteurFormated, 'Y-m-d');
+
+            // Verification
             if ($dateEmbauche == $dateOfVisiteurFormated) {
                 $request->session()->put('login', $login);
                 $request->session()->put('MAT', $visiteur->VIS_MATRICULE);
                 $request->session()->put('role', $role);
-                // $request->session()->put('MAT', 'a131');
                 $request->session()->put('nom', $visiteur->VIS_NOM);
                 $request->session()->put('prenom', $visiteur->Vis_PRENOM);
-
+                // Add logs
+                $log = new logs();
+                $log->date = date('Y-m-d H:i:s');
+                $log->VIS_MATRICULE = $visiteur->VIS_MATRICULE;
+                $log->action = 'Login';
+                
                 return redirect('/rapport');
             } else {
                 return redirect()->route('login', ['error' => 'Mauvais Mot de passe ou utilisateur']);

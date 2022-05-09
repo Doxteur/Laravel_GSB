@@ -17,5 +17,6 @@ class PraticienController extends Controller
     public function praticiensWS(){
         return response()->json(Praticien::all());
     }
+    
 
 }
