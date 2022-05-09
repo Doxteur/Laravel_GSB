@@ -11,4 +11,10 @@ class logs extends Model
     protected $table = 'logs';
     protected $primaryKey = 'id';
     public $timestamps = false;
+    // one to many
+    
+    public function visiteur()
+    {
+        return $this->belongsTo(visiteur::class);
+    }
 }

@@ -37,12 +37,14 @@ class LoginController extends Controller
                 $request->session()->put('role', $role);
                 $request->session()->put('nom', $visiteur->VIS_NOM);
                 $request->session()->put('prenom', $visiteur->Vis_PRENOM);
+
                 // Add logs
                 $log = new logs();
                 $log->date = date('Y-m-d H:i:s');
                 $log->VIS_MATRICULE = $visiteur->VIS_MATRICULE;
                 $log->action = 'Login';
                 
+                $log->save();
                 return redirect('/rapport');
             } else {
                 return redirect()->route('login', ['error' => 'Mauvais Mot de passe ou utilisateur']);

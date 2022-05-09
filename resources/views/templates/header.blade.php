@@ -44,7 +44,14 @@
                 <span class="menu-title">Medicaments</span>
             </a>
         </li>
-            
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="{{ route('logs') }}">
+                <span class="menu-icon">
+                    <i class="mdi mdi-pill"></i>
+                </span>
+                <span class="menu-title">Mes Connexion</span>
+            </a>
+        </li>
    
     </ul>
 </nav>
